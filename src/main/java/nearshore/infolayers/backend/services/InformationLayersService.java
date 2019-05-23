@@ -54,6 +54,14 @@ public class InformationLayersService {
     	
     	return map;
     }
+
+    public List<Map<String, Object>> getLayerByStateAndLayerName(String stateId, String layerId) throws Exception {
+        return layersRepository.getLayerByStateIdAndLayerName(stateId, layerId);
+    }
+    
+    public List<Map<String, Object>> getNationalLayerByName(String layerName) throws Exception {
+        return layersRepository.getNationalLayerByName(layerName);
+    }
     
     public List<Map<String, Object>> getLayerById(Integer layerId, Integer stateId) throws Exception {
         return layersRepository.getLayerByIdAndStateId(layerId, stateId);

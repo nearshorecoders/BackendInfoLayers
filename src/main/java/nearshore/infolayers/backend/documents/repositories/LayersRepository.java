@@ -142,6 +142,19 @@ public class LayersRepository extends BaseMongoRepository{
 		}
 	}
 	
+	public List<Map<String, Object>> getLayerByStateIdAndLayerName(String stateId,String layerName) throws MongoException {
+		try {
+
+			return getByParameterAndValue(layerName, stateId, "properties.CVE_ENT");
+
+		} catch (Exception e) {
+
+			log.error("{}", e);
+
+			throw new MongoException("No se pudo consultar la información", e);
+		}
+	}
+	
 	public String getTotDiscapasitados(Integer stateId, String level) {
 		
 		try {
@@ -321,6 +334,19 @@ public class LayersRepository extends BaseMongoRepository{
 			log.error("{}", e);
 
 			throw new MongoException("No se pudo consultar la información", e);
+		}
+	}
+	
+	public List<Map<String, Object>> getNationalLayerByName(String layerName) throws MongoException {
+		try {
+
+			return executeCommand(layerName, new Query());
+
+		} catch (Exception e) {
+
+			log.error("{}", e);
+
+			throw new MongoException("No se pudo consultar la información nacional "+layerName, e);
 		}
 	}
 	
